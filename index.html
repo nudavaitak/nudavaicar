@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NUDAVAICAR — Автомобили под заказ</title>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#101114;color:white;font-family:Arial,sans-serif}
+header{padding:22px 6%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #333}
+.logo{font-size:23px;font-weight:900;letter-spacing:1px}
+.logo span{color:#e94b35}
+nav a{color:#ddd;text-decoration:none;margin-left:15px;font-size:13px}
+.hero{padding:100px 7% 110px;background:linear-gradient(125deg,#17191e,#303743)}
+.tag{color:#ff715b;letter-spacing:3px;font-size:12px}
+h1{font-size:clamp(38px,8vw,75px);line-height:1.06;max-width:850px;margin:22px 0}
+p{color:#bcbfc7;line-height:1.7}
+.hero p{max-width:540px}
+.btn{display:inline-block;background:#e94b35;color:white;padding:17px 25px;border-radius:6px;text-decoration:none;font-weight:bold;margin-top:20px}
+section{padding:65px 7%}
+h2{font-size:32px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:#1e2025;border:1px solid #36383e;border-radius:12px;padding:28px}
+.card h3{font-size:23px}
+.number{color:#ff715b;font-weight:bold}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:22px}
+footer{padding:35px 7%;border-top:1px solid #333;color:#aaa;font-size:13px}
+@media(max-width:550px){nav{display:none}.hero{padding-top:75px}section{padding-top:45px}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">NUDAVAI<span>CAR</span></div>
+<nav><a href="#countries">Направления</a><a href="#steps">Как работаем</a><a href="#contact">Контакты</a></nav>
+</header>
+
+<div class="hero">
+<div class="tag">АВТОМОБИЛИ ПОД ЗАКАЗ</div>
+<h1>ТВОЙ АВТОМОБИЛЬ. НАШ МАРШРУТ.</h1>
+<p>Подбор и организация доставки автомобилей из Южной Кореи, Китая и Европы. Поможем пройти путь от выбора автомобиля до получения ключей.</p>
+<a class="btn" href="#contact">Подобрать автомобиль →</a>
+</div>
+
+<section id="countries">
+<div class="tag">НАПРАВЛЕНИЯ</div>
+<h2>Откуда привозим</h2>
+<div class="cards">
+<div class="card"><div class="number">01 / KOREA</div><h3>Южная Корея</h3><p>Подбор автомобилей на корейском рынке с учётом бюджета и пожеланий.</p></div>
+<div class="card"><div class="number">02 / CHINA</div><h3>Китай</h3><p>Современные автомобили китайских и международных производителей.</p></div>
+<div class="card"><div class="number">03 / EUROPE</div><h3>Европа</h3><p>Поиск и организация покупки автомобилей на европейском рынке.</p></div>
+</div>
+</section>
+
+<section id="steps">
+<div class="tag">ПРОЦЕСС</div>
+<h2>Как мы работаем</h2>
+<div class="steps">
+<div><div class="number">01</div><h3>Заявка</h3><p>Уточняем модель, комплектацию и бюджет.</p></div>
+<div><div class="number">02</div><h3>Подбор</h3><p>Находим подходящие предложения.</p></div>
+<div><div class="number">03</div><h3>Покупка</h3><p>Согласовываем условия и документы.</p></div>
+<div><div class="number">04</div><h3>Доставка</h3><p>Организуем логистику до согласованного пункта назначения.</p></div>
+</div>
+</section>
+
+<section id="contact">
+<div class="tag">СВЯЗАТЬСЯ С НАМИ</div>
+<h2>Найдём автомобиль под твой запрос</h2>
+<p>Расскажи, какую машину ищешь и какой бюджет планируешь.</p>
+<a class="btn" href="mailto:info@nudavaicar.com?subject=Заявка%20на%20подбор%20автомобиля">Отправить заявку →</a>
+<p style="font-size:12px">Для получения заявок необходимо предварительно настроить почту info@nudavaicar.com.</p>
+</section>
+
+<footer>© 2026 NUDAVAICAR · nudavaicar.com</footer>
+</body>
+</html>
