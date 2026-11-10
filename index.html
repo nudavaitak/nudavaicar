@@ -149,6 +149,12 @@ footer p{max-width:80ch}
 .seg.mini{flex:none}
 .seg.mini label{padding:10px 16px;font-weight:600}
 a.brand{color:var(--ink);text-decoration:none}
+/* шапка закреплена: логотип всегда под рукой */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);padding-block:9px;flex-wrap:nowrap;border-bottom:1px solid var(--line);box-shadow:0 0 0 100vmax var(--bg);clip-path:inset(0 -100vmax)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--bg)}
+section{scroll-margin-top:64px}
+.top nav a{white-space:nowrap}
+@media (max-width:380px){.brand{font-size:1.15rem}.top nav{font-size:.84rem}}
 </style>
 </head>
 <body>
