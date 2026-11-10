@@ -148,13 +148,14 @@ footer p{max-width:80ch}
 .top nav a{border-bottom-color:var(--accent)}
 .seg.mini{flex:none}
 .seg.mini label{padding:10px 16px;font-weight:600}
+a.brand{color:var(--ink);text-decoration:none}
 </style>
 </head>
 <body>
 
 <div class="wrap">
   <header class="top">
-    <div class="brand"><i class="mark"></i><div>nudavai<span>car</span></div></div>
+    <a class="brand" id="home" href="/" aria-label="nudavaicar, на главную"><i class="mark"></i><div>nudavai<span>car</span></div></a>
     <nav><a href="#calc">Рассчитать и заказать</a></nav>
   </header>
 
@@ -494,6 +495,7 @@ function copyText(done){
 }
 
 function start(){
+  $('home').addEventListener('click',e=>{ e.preventDefault(); window.scrollTo({top:0,behavior:'smooth'}); });  // логотип возвращает в начало страницы
   document.querySelectorAll('input[name="curkr"]').forEach(el=>el.addEventListener('change',()=>{ $('price').value=''; }));
   const kms=['Новый автомобиль','до 5 000 км'];           // карусель пробега: новый, 5, 10, 20 ... 200 тыс. км
   for(let k=10;k<=200;k+=10) kms.push('до '+(k*1000).toLocaleString('ru-RU')+' км');
