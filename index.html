@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="nudavaicar: подбор, покупка и доставка автомобилей из Кореи, Европы и Китая под ключ. Калькулятор цены и заявка в WhatsApp.">
+<meta name="description" content="nudavaicar: подбор, покупка и доставка автомобилей из Кореи, Европы и Китая под ключ. Калькулятор цены и заявка в WhatsApp или Telegram.">
 <meta name="theme-color" content="#0B0B0F">
 <style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>nudavaicar</title>
@@ -169,7 +169,7 @@ section{scroll-margin-top:64px}
     <div class="stripes" aria-hidden="true"><i></i><i></i><i></i></div>
     <p class="tagline">Автомобили из Кореи · Европы · Китая</p>
     <h1>Привезём автомобиль под ключ</h1>
-    <p>Подбор, покупка и доставка автомобилей из-за рубежа. Найдите машину на площадке, посчитайте цену с таможней и доставкой и отправьте заявку в WhatsApp.</p>
+    <p>Подбор, покупка и доставка автомобилей из-за рубежа. Найдите машину на площадке, посчитайте цену с таможней и доставкой и отправьте заявку в WhatsApp или Telegram.</p>
     <ul class="values"><li>Надёжно</li><li>Быстро</li><li>Прозрачно</li><li>Под ключ</li></ul>
   </div>
 
@@ -262,7 +262,7 @@ section{scroll-margin-top:64px}
   <section id="order">
     <div class="sec-head">
       <h2>Шаг 2. Заявка</h2>
-      <p>Расчёт и ссылка на автомобиль попадут в заявку сами. Откроется WhatsApp с готовым сообщением, останется нажать «Отправить».</p>
+      <p>Расчёт и ссылка на автомобиль попадут в заявку сами. Откроется WhatsApp или Telegram с готовым сообщением, останется нажать «Отправить».</p>
     </div>
     <div class="locked" id="locked">
       <p>Заявка откроется после расчёта. Укажите в калькуляторе цену и ссылку на автомобиль, затем нажмите «Перейти к заявке».</p>
@@ -271,7 +271,7 @@ section{scroll-margin-top:64px}
     <form class="order" id="form" novalidate hidden>
       <div class="panel">
         <div class="field"><label for="f-name">Имя</label><input type="text" id="f-name" autocomplete="name"></div>
-        <div class="field"><label for="f-contact" id="contact-label">Ваш номер WhatsApp</label><input type="text" id="f-contact" autocomplete="tel" placeholder="+7 ..."></div>
+        <div class="field"><label for="f-contact" id="contact-label">Ваш номер телефона</label><input type="text" id="f-contact" autocomplete="tel" placeholder="+7 ..."></div>
         <div class="field" id="note-box" hidden><label for="f-note">Пожелания</label><textarea id="f-note" placeholder="Двигатель, привод, комплектация, цвет, пробег"></textarea></div>
       </div>
       <div class="panel">
@@ -279,6 +279,7 @@ section{scroll-margin-top:64px}
         <pre class="preview" id="preview"></pre>
         <div class="actions">
           <a class="btn" id="send" href="#order" target="_blank" rel="noopener">Отправить в WhatsApp</a>
+          <a class="btn" id="send-tg" href="#order" target="_blank" rel="noopener">Отправить в Telegram</a>
           <button type="button" class="btn ghost" id="copy">Скопировать текст</button>
         </div>
         <p class="msg" id="msg" role="status"></p>
@@ -289,7 +290,7 @@ section{scroll-margin-top:64px}
   <section id="steps">
     <div class="sec-head"><h2>Как проходит заказ</h2></div>
     <ol class="steps">
-      <li><h3>Расчёт и заявка</h3><p>Находите машину на площадке, считаете цену в калькуляторе и отправляете заявку в WhatsApp.</p></li>
+      <li><h3>Расчёт и заявка</h3><p>Находите машину на площадке, считаете цену в калькуляторе и отправляете заявку в WhatsApp или Telegram.</p></li>
       <li><h3>Подбор</h3><p>Проверяем ваш вариант и при необходимости предлагаем похожие с расчётом под ключ.</p></li>
       <li><h3>Проверка и выкуп</h3><p>Проверяем историю и состояние выбранной машины, после вашего согласия выкупаем.</p></li>
       <li><h3>Доставка и таможня</h3><p>Везём автомобиль, проходим таможню, оформляем документы.</p></li>
@@ -315,6 +316,7 @@ section{scroll-margin-top:64px}
 <script>
 /* ===== Настройки владельца сайта ===== */
 const CONFIG = {
+  telegram: '+79854224442',           // Telegram: имя без @ (например 'nudavaicar') или номер с плюсом
   whatsapp: '79854224442',            // номер WhatsApp Business с кодом страны, только цифры, например '996700123456'
   cb: { eur: 92.1924, usd: 82.1386, krw: 61.2061, cny: 12.2651 },  // курс ЦБ РФ: 1 евро, 1 доллар, 1000 вон, 1 юань
   cbDate: '7 ноября 2026',
@@ -472,7 +474,7 @@ function buildMessage(){
   const v=id=>$(id).value.trim();
   const lines=['Заявка на автомобиль'];
   if(v('f-name')) lines.push('Имя: '+v('f-name'));
-  if(v('f-contact')) lines.push('WhatsApp: '+v('f-contact'));
+  if(v('f-contact')) lines.push('Телефон: '+v('f-contact'));
   if(last){const o=last.o, og=ORIGIN[o.from];
     lines.push('Откуда: '+og.name);
     if(o.model) lines.push('Автомобиль: '+o.model+(o.year?', '+o.year:''));
@@ -490,13 +492,15 @@ function buildMessage(){
   $('preview').textContent=text;
   $('send').href=CONFIG.whatsapp?'https://wa.me/'+CONFIG.whatsapp.replace(/\D/g,'')+'?text='+encodeURIComponent(text):'#order';
   if(!CONFIG.whatsapp) $('send').removeAttribute('target');
+  $('send-tg').hidden=!CONFIG.telegram;
+  if(CONFIG.telegram) $('send-tg').href='https://t.me/'+CONFIG.telegram.replace(/^@/,'')+'?text='+encodeURIComponent(text);
   return text;
 }
 function say(t,err){const m=$('msg');m.textContent=t;m.className='msg'+(err?' err':'');}
 function copyText(done){
   const text=$('preview').textContent;
   const fallback=()=>{const s=getSelection(),r=document.createRange();r.selectNodeContents($('preview'));s.removeAllRanges();s.addRange(r);
-    say('Текст выделен. Скопируйте его и отправьте нам в WhatsApp.');};
+    say('Текст выделен. Скопируйте его и отправьте нам в WhatsApp или Telegram.');};
   try{navigator.clipboard.writeText(text).then(()=>say(done),fallback);}catch(e){fallback();}
 }
 
@@ -532,15 +536,17 @@ function start(){
   });
   document.querySelectorAll('#form input,#form textarea').forEach(el=>el.addEventListener('input',()=>{say('');buildMessage();}));
   $('form').addEventListener('submit',e=>e.preventDefault());
-  $('send').addEventListener('click',e=>{
+  const sendVia=app=>e=>{
     buildMessage();
     if(!$('f-name').value.trim()||!$('f-contact').value.trim()){
-      e.preventDefault(); say('Укажите имя и номер WhatsApp, чтобы мы могли ответить.',true);
+      e.preventDefault(); say('Укажите имя и номер телефона, чтобы мы могли ответить.',true);
       ($('f-name').value.trim()?$('f-contact'):$('f-name')).focus(); return;
     }
-    if(!CONFIG.whatsapp){ e.preventDefault(); copyText('Текст заявки скопирован. Отправьте его нам в WhatsApp.'); return; }
-    say('Открываем WhatsApp. Нажмите «Отправить» в чате, чтобы заявка дошла.');
-  });
+    if(app==='WhatsApp'&&!CONFIG.whatsapp){ e.preventDefault(); copyText('Текст заявки скопирован. Отправьте его нам в WhatsApp.'); return; }
+    say('Открываем '+app+'. Нажмите «Отправить» в чате, чтобы заявка дошла.');
+  };
+  $('send').addEventListener('click',sendVia('WhatsApp'));
+  $('send-tg').addEventListener('click',sendVia('Telegram'));
   $('copy').addEventListener('click',()=>copyText('Текст скопирован.'));
   setLock(); render();
 }
