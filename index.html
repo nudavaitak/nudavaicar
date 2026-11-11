@@ -271,7 +271,7 @@ section{scroll-margin-top:64px}
     <form class="order" id="form" novalidate hidden>
       <div class="panel">
         <div class="field"><label for="f-name">Имя</label><input type="text" id="f-name" autocomplete="name"></div>
-        <div class="field"><label for="f-contact" id="contact-label">Ваш номер телефона</label><input type="text" id="f-contact" autocomplete="tel" placeholder="+7 ..."></div>
+        <div class="field"><label for="f-contact" id="contact-label">Ваш номер телефона</label><input type="tel" inputmode="tel" id="f-contact" autocomplete="tel" placeholder="+7 ..."></div>
         <div class="field" id="note-box" hidden><label for="f-note">Пожелания</label><textarea id="f-note" placeholder="Двигатель, привод, комплектация, цвет, пробег"></textarea></div>
       </div>
       <div class="panel">
@@ -505,6 +505,15 @@ function copyText(done){
 }
 
 function start(){
+  $('f-contact').addEventListener('input',e=>{   // +7 подставляется сам, когда номер начинают вводить без него
+    const el=e.target, v=el.value;
+    if(e.inputType&&e.inputType.indexOf('delete')===0){ if(/^\+?7?\s*$/.test(v)) el.value=''; return; }
+    if(!v||v[0]==='+') return;                    // номер с плюсом (другая страна) не трогаем
+    let d=v.replace(/\D/g,'');
+    if(!d){ el.value=''; return; }
+    if(d[0]==='8'||d[0]==='7') d=d.slice(1);      // 8 985... и 7 985... приводим к +7 985...
+    el.value='+7 '+d;
+  });
   $('home').addEventListener('click',e=>{   // логотип: очистить все поля и вернуться в начало страницы
     e.preventDefault();
     document.querySelectorAll('#calc input:not([type=radio]),#form input,#form textarea').forEach(el=>{ el.value=''; });
